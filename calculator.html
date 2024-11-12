@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+      body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial,Sans-Serif;
+        background-color: #f4f4f4;
+        margin: 0;
+      }
+      .calculator{
+        display: grid;
+        grid-template-columns: repeat(4,80px);
+        grid-template-rows: minmax(100px,auto)  repeat(4,80px);;
+        gap: 10px;
+        width: max-content;
+      }
+      .display{
+        grid-column: span 4;
+        background-color: #fff;
+        /*color: #fff;*/
+        font-size: 2em;
+        text-align: right;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .btn{
+        font-size: 2em;
+        /*background-color: #444;*/
+        border: none;
+      }
+      .btnop{
+        font-size: 2em;
+        background-color: #444;
+        color: white;
+        border: none;
+      }
+      .cbtn{
+        font-size: 2em;
+        background-color: red;
+        color: white;
+        border: none;
+      }
+      .btn:hover{
+        background-color: grey;
+      }
+      .btnop:hover{
+        background-color: black;
+      }
+      .cbtn:hover{
+        background-color: grey;
+      }
+    </style>
+  </head>
+  <body>
+     <!--Please Code HTML tags Here in the Body Tag-->
+     <div class="calculator">
+       <div id="display" class="display">0</div>
+       <!--<input type="text" class="display" id="display"></br>-->
+       <button class="btn" onclick="addNum('1')">1</button>
+       <button class="btn" onclick="addNum('2')">2</button>
+       <button class="btn" onclick="addNum('3')">3</button>
+       <button class="btnop" onclick="addop('+')">+</button>
+       <button class="btn" onclick="addNum('4')">4</button>
+       <button class="btn" onclick="addNum('5')">5</button>
+       <button class="btn" onclick="addNum('6')">6</button>
+       <button class="btnop" onclick="addop('-')">-</button>
+       <button class="btn" onclick="addNum('7')">7</button>
+       <button class="btn" onclick="addNum('8')">8</button>
+       <button class="btn" onclick="addNum('9')">9</button>
+       <button class="btnop" onclick="addop('*')">*</button>
+       <button class="cbtn" onclick="clear()">C</button>
+       <button class="btn" onclick="addNum('0')">0</button>
+       <button class="btn" onclick="calculate()">=</button>
+       <button class="btnop" onclick="addop('/')">/</button>
+       
+     </div>
+  </body>
+  <script>
+    let displayValue=""
+const display=document.getElementById("display")
+
+function addNum(num)
+{
+  if(displayValue==="0"||displayValue==="cant divided by Zero"){
+    displayValue="";
+  }
+  displayValue+=num;
+  updatedisplay()
+}
+
+function addop(operator){
+  if(displayValue==="cant divided by Zero"){
+    displayValue="";
+  }
+  displayValue+=""+operator+"";
+  updatedisplay()
+}
+
+function clear(){
+  displayValue="";
+  updatedisplay();
+}
+
+function calculate(){
+  try{
+    if(displayValue.includes("/ 0"))
+    {
+      displayValue="cant divided by Zero"
+    }else
+    {
+      displayValue=eval(displayValue).toString();
+    }
+  }catch(error)
+  {
+    displayValue="Error"
+  }
+  updatedisplay()
+}
+
+function updatedisplay(){
+  display.innerText=displayValue
+}
+  </script>
+</html>
